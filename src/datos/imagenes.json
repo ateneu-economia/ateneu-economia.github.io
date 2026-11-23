@@ -1,5 +1,5 @@
 {
- "nota": "Banco de imágenes de Econplebs (30). Fotos: se muestran en gris (filter grayscale + contraste). color=true: carteles y obras, se muestran tal cual (las de vanguardia ya vienen con el color adaptado a la paleta). Registro completo con licencias: diseno/imagenes.md. Asignación automática: la imagen elegida a mano manda; si no, se toma del grupo de la categoría con (id del artículo mod n). La cuña roja no se asigna sola: solo a mano. Reparto (02-11-2026): las obras constructivistas, en todas las secciones; la educación obrera y popular, solo en didáctica y propuestas de aula; las fotos industriales, en economía política, cuaderno sindical, opinión y coyuntura; las de aula, en propuestas de aula; la tradición teórica (Vigotski), en didáctica. «recorte» (píxeles de cada borde) quita el marco del negativo escaneado; width y height son ya las medidas recortadas.",
+ "nota": "Banco de imágenes del Ateneu d’Economia (30). Fotos: se muestran en gris (filter grayscale + contraste). color=true: carteles y obras, se muestran tal cual (las de vanguardia ya vienen con el color adaptado a la paleta). Registro completo con licencias: diseno/imagenes.md. Asignación automática: la imagen elegida a mano manda; si no, se toma del grupo de la categoría con (id del artículo mod n). La cuña roja no se asigna sola: solo a mano. Reparto (02-11-2026): las obras constructivistas, en todas las secciones; la educación obrera y popular, solo en didáctica y propuestas de aula; las fotos industriales, en economía política, cuaderno sindical, opinión y coyuntura; las de aula, en propuestas de aula; la tradición teórica (Vigotski), en didáctica. «recorte» (píxeles de cada borde) quita el marco del negativo escaneado; width y height son ya las medidas recortadas. Reparto revisado (prueba 23-11-2026): fuera del reparto automático los carteles de propaganda y las obras de vanguardia, salvo «Sobre dos cuadrados» (cuento infantil) en didáctica y aula; siguen en el banco para uso a mano.",
  "images": [
   {
    "key": "trabajo",
@@ -508,62 +508,33 @@
    "cooperativa",
    "trabajo",
    "migracion",
-   "puerto",
-   "klutsis-construccion",
-   "chashnik",
-   "malevich",
-   "proun",
-   "vjutemas",
-   "dos-cuadrados",
-   "dos-cuadrados-tierra",
-   "dos-cuadrados-aqui"
+   "puerto"
   ],
   "opinion": [
    "trabajo",
    "migracion",
    "salida",
    "archivo",
-   "industria",
-   "klutsis-construccion",
-   "chashnik",
-   "malevich",
-   "proun",
-   "vjutemas",
-   "dos-cuadrados",
-   "dos-cuadrados-tierra",
-   "dos-cuadrados-aqui"
+   "industria"
   ],
   "coyuntura": [
    "puerto",
    "industria",
    "cooperativa",
-   "salida",
-   "klutsis-construccion",
-   "chashnik",
-   "malevich",
-   "proun",
-   "vjutemas",
-   "dos-cuadrados",
-   "dos-cuadrados-tierra",
-   "dos-cuadrados-aqui"
+   "salida"
   ],
   "didactica": [
-   "highlander",
-   "horton",
-   "escola-moderna",
+   "sociales",
+   "pensar",
+   "preguntas",
+   "pizarra",
+   "escuela",
+   "taller",
    "misiones",
-   "alfabetizacion",
-   "extraescolar",
+   "highlander",
    "vigotski",
    "pensamiento",
-   "klutsis-construccion",
-   "chashnik",
-   "malevich",
-   "proun",
-   "vjutemas",
-   "dos-cuadrados",
-   "dos-cuadrados-tierra",
-   "dos-cuadrados-aqui"
+   "dos-cuadrados"
   ],
   "aula": [
    "pizarra",
@@ -572,20 +543,9 @@
    "sociales",
    "taller",
    "escuela",
-   "highlander",
-   "horton",
-   "escola-moderna",
    "misiones",
-   "alfabetizacion",
-   "extraescolar",
-   "klutsis-construccion",
-   "chashnik",
-   "malevich",
-   "proun",
-   "vjutemas",
-   "dos-cuadrados",
-   "dos-cuadrados-tierra",
-   "dos-cuadrados-aqui"
+   "highlander",
+   "dos-cuadrados"
   ],
   "sindical": [
    "salida",
@@ -593,28 +553,12 @@
    "cooperativa",
    "archivo",
    "migracion",
-   "industria",
-   "klutsis-construccion",
-   "chashnik",
-   "malevich",
-   "proun",
-   "vjutemas",
-   "dos-cuadrados",
-   "dos-cuadrados-tierra",
-   "dos-cuadrados-aqui"
+   "industria"
   ],
   "teoria": [
    "pensamiento",
    "archivo",
-   "industria",
-   "klutsis-construccion",
-   "chashnik",
-   "malevich",
-   "proun",
-   "vjutemas",
-   "dos-cuadrados",
-   "dos-cuadrados-tierra",
-   "dos-cuadrados-aqui"
+   "industria"
   ]
  }
 }

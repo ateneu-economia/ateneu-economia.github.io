@@ -4,7 +4,7 @@ Una publicación por archivo. Copia este bloque en un archivo nuevo (sin «_» d
 
 ---
 title: "Título de la publicación"
-authors: "Econplebs"               # autoría tal como debe aparecer
+authors: "Jordi Vila"              # autoría tal como debe aparecer
 year: 2026
 type: articulo                      # articulo | capitulo | libro | working-paper | resena
 journal: "Nombre de la revista"     # opcional

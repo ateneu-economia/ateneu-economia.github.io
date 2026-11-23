@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import { MOSTRAR_SECCIONES_VACIAS } from "../configuracion.mjs";
 import imagenesBanco from "../datos/imagenes.json";
-import Carrusel from "../components/Carrusel.astro";
+import Presentacion from "../components/Presentacion.astro";
 import Lateral from "../components/Lateral.astro";
 import {
   t, ruta, rutaArticulo, articulosDe, fecha, fechaISO, nombreCategoria, imagenDe, otro, hayPublicaciones,
@@ -20,37 +20,52 @@ const orden = [
   ...todos.filter((a) => a.data.category === "investigacion"),
   ...todos.filter((a) => a.data.category !== "teoria"), // las notas de trabajo no van al carrusel
 ];
-const carrusel: Articulo[] = [...new Set(orden)].slice(0, 3);
+const carrusel: Articulo[] = []; // sin carrusel: la primera pantalla es la presentación
+void orden;
 
 // La lista no repite lo que ya sale en el carrusel.
 const resto = todos.filter((a) => !carrusel.includes(a));
 const [destacado, ...tarjetas] = resto;
 ---
 
-<Base lang={lang} otraLengua={ruta("portada", otro(lang))} imagenes={carrusel.length ? carrusel.map(imagenDe) : imagenesBanco.images.filter((i) => i.key === "industria")}>
-  <Carrusel lang={lang} articulos={carrusel} />
+<Base lang={lang} otraLengua={ruta("portada", otro(lang))} imagenes={carrusel.length ? carrusel.map(imagenDe) : imagenesBanco.images.filter((i) => i.key === "pizarra")}>
+  <Presentacion lang={lang} />
+
+  <section class="nombre" aria-labelledby="nombre-titulo">
+    <div class="envoltorio nombre__in">
+      <h2 class="rotulo" id="nombre-titulo">{lang === "es" ? "De dónde viene el nombre" : "D’on ve el nom"}</h2>
+      <dl class="entrada">
+        <dt>{lang === "es" ? "ateneo" : "ateneu"} <small>m.</small></dt>
+        <dd>{lang === "es" ? "Lugar de lectura, estudio, clases y debate entre iguales. Eso quiere ser esta web: una sala abierta al profesorado y a la universidad." : "Lloc de lectura, estudi, classes i debat entre iguals. Això vol ser esta web: una sala oberta al professorat i a la universitat."}</dd>
+      </dl>
+      <dl class="entrada">
+        <dt>{lang === "es" ? "economía" : "economia"} <small>f.</small></dt>
+        <dd>{lang === "es" ? "Del griego " : "Del grec "}<i>oîkos</i>{lang === "es" ? " (casa) y " : " (casa) i "}<i>nómos</i>{lang === "es" ? " (norma): «la norma de la casa». De ahí el tejado del logotipo." : " (norma): «la norma de la casa». D’ací la teulada del logotip."}</dd>
+      </dl>
+    </div>
+  </section>
 
   <div class="envoltorio portada">
     <div class="portada__principal">
       <section class="franja" aria-labelledby="franja-titulo">
         <div class="franja__texto">
-          <p class="rotulo rotulo--rojo">{t("investigacionDidactica", lang)}</p>
+          <p class="rotulo rotulo--rojo">{t("didactica", lang)}</p>
           <h2 id="franja-titulo">{t("queInvestigo", lang)}</h2>
           <p class="franja__entrada">{t("queInvestigoTexto", lang)}</p>
           <p class="franja__enlaces">
-            <a class="rotulo enlace-subrayado" href={ruta("investigacion", lang)}>{t("investigacion", lang)}</a>
-            {(MOSTRAR_SECCIONES_VACIAS || todos.some((a) => a.data.category === "investigacion")) && <a class="rotulo enlace-subrayado" href={ruta("avances", lang)}>{t("economiaPolitica", lang)}</a>}
-            {(MOSTRAR_SECCIONES_VACIAS || todos.some((a) => a.data.category === "teoria")) && <a class="rotulo enlace-subrayado" href={ruta("teoria", lang)}>{t("cuadernoTeoria", lang)}</a>}
+            <a class="rotulo enlace-subrayado" href={ruta("docencia", lang)}>{t("docencia", lang)}</a>
+            {(MOSTRAR_SECCIONES_VACIAS || todos.some((a) => a.data.category === "didactica")) && <a class="rotulo enlace-subrayado" href={ruta("didactica", lang)}>{t("didactica", lang)}</a>}
+            {(MOSTRAR_SECCIONES_VACIAS || todos.some((a) => a.data.category === "aula")) && <a class="rotulo enlace-subrayado" href={ruta("aula", lang)}>{t("propuestasAula", lang)}</a>}
             {conPublicaciones && <a class="rotulo enlace-subrayado" href={ruta("publicaciones", lang)}>{t("publicaciones", lang)}</a>}
           </p>
         </div>
       </section>
 
+      {destacado && (
       <section class="lecturas" aria-labelledby="lecturas-titulo">
         <p class="rotulo rotulo--rojo">{t("ultimasLecturas", lang)}</p>
         <h2 id="lecturas-titulo" class="lecturas__titulo">{t("nuevasIdeas", lang)}</h2>
 
-        {!destacado && <p class="vacio">{t("sinArticulos", lang)}</p>}
 
         {destacado && (
           <article class="destacado">
@@ -80,6 +95,7 @@ const [destacado, ...tarjetas] = resto;
 
         {todos.length > 0 && <a class="rotulo archivo" href={ruta("articulos", lang)}>{t("archivoCompleto", lang)}</a>}
       </section>
+      )}
     </div>
 
     <Lateral lang={lang} articulos={todos} />
@@ -87,6 +103,15 @@ const [destacado, ...tarjetas] = resto;
 </Base>
 
 <style>
+  .nombre { background: var(--manila); border-block: 1px solid var(--manila-2); }
+  .nombre__in { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); padding-block: clamp(2rem, 4vw, 3rem); align-items: start; }
+  .nombre__in > .rotulo { padding-top: 0.75rem; max-width: 8rem; color: var(--gris); }
+  .entrada { margin: 0; }
+  .entrada dt { font: 600 clamp(1.7rem, 2.6vw, 2.15rem)/1.1 var(--f-lectura); letter-spacing: -0.01em; }
+  .entrada dt small { font: 500 0.75rem var(--f-rotulo); letter-spacing: 0.06em; color: var(--gris); margin-left: 0.5rem; vertical-align: 0.35em; }
+  .entrada dd { margin: 0.5rem 0 0; max-width: 30rem; font-size: 1.06rem; }
+  @media (max-width: 820px) { .nombre__in { grid-template-columns: minmax(0, 1fr); } }
+
   .portada {
     display: grid;
     grid-template-columns: minmax(0, 760px) 395px;

@@ -5,13 +5,15 @@ lang: es
 translationKey: bio
 kind: sobre-mi
 ---
-Econplebs es el cuaderno de un profesor de Economía de secundaria que investiga desde la economía política: cómo se produce la riqueza, cómo se reparte y por qué llegan las crisis. «Economía política desde abajo» resume el punto de vista: mirar la economía desde quienes trabajan.
+Soy Jordi Vila, profesor de Economía en secundaria. Investigo cómo se enseña y cómo se aprende la economía: qué conceptos conviene poner en el centro, qué cuentan los manuales, cómo razona el alumnado y qué funciona de verdad en el aula.
 
-Aquí se publican tres cosas:
+El **Ateneu d’Economia** es el espacio donde reúno ese trabajo. Toma el nombre de los ateneos, los lugares donde se iba a leer, a estudiar y a debatir entre iguales, y parte de una idea sencilla: la economía se aprende practicándola. La palabra lo dice: *economía* viene del griego *oîkos* (casa) y *nómos* (norma), la norma de la casa. De ahí el tejado del logotipo.
 
-- **Avances de investigación**, con los datos y el código para que cualquiera pueda comprobarlos.
-- **Análisis de coyuntura y opinión**, con argumentos y fuentes.
-- **Didáctica de la economía**: cómo se forman los conceptos económicos en el aula.
+Aquí encontrarás:
+
+- **Investigación** en didáctica de la economía.
+- **Propuestas de aula y materiales** para trabajar en clase, listos para usar y adaptar.
+- **Datos** para entender la economía y enseñarla, con su fuente.
 
 Los materiales y las herramientas para el alumnado están en el [Observatorio](https://observatorio-economia.github.io).
 

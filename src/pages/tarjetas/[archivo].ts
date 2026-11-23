@@ -1,6 +1,7 @@
 // Tarjetas para compartir: /tarjetas/<idioma>-<slug>.jpg (artículos) y /tarjetas/<idioma>-portada.jpg (el resto)
 import type { APIRoute } from "astro";
 import imagenes from "../../datos/imagenes.json";
+import { MARCA } from "../../configuracion.mjs";
 import { t, articulosDe, imagenDe, nombreCategoria, type Imagen, type Lang } from "../../lib/sitio";
 import { tarjetaJpg } from "../../lib/tarjeta";
 
@@ -9,7 +10,7 @@ export async function getStaticPaths() {
   for (const lang of ["es", "ca"] as Lang[]) {
     salidas.push({
       params: { archivo: `${lang}-portada.jpg` },
-      props: { rotulo: "Econplebs", titulo: t("subtitulo", lang), img: imagenes.images.find((i) => i.key === "industria")! },
+      props: { rotulo: MARCA, titulo: t("subtitulo", lang), img: imagenes.images.find((i) => i.key === "sociales")! },
     });
     for (const a of await articulosDe(lang)) {
       salidas.push({

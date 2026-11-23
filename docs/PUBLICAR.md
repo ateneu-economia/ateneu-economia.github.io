@@ -1,8 +1,11 @@
 # Procedimiento «publica X»
 
-El autor escribe en Obsidian, en `Web-personal/publicar/` (vault), y pide
-«publica X». Esa carpeta nunca se enlaza con este repositorio: se **copia**.
-Su `LEEME.md` es la versión para el autor de este mismo procedimiento.
+> **Aviso (23-11-2026):** el espacio `Web-personal/` del vault se eliminó y la
+> web ya no es anónima. Lo que sigue describe el procedimiento anterior; las
+> rutas del vault ya no existen hasta que el autor decida dónde escribe.
+
+El autor escribía en Obsidian, en `Web-personal/publicar/` (vault), y pedía
+«publica X». Esa carpeta nunca se enlazaba con este repositorio: se **copiaba**.
 
 ## «Prepara el valenciano de X»
 
@@ -37,7 +40,7 @@ Su `LEEME.md` es la versión para el autor de este mismo procedimiento.
    npm run comprobar
    ```
 4. Abre el artículo y la portada en escritorio y móvil, y enséñaselos.
-5. Commit (identidad Econplebs, ya configurada en el repositorio).
+5. Commit (con la identidad del autor; antes del 23-11-2026 se usaba «Econplebs»).
 6. Mueve `X.md` y `X-va.md` a `publicar/publicado/` (sobrescribe si ya
    estaban: es una actualización).
 7. Despliegue: cuando exista (hito 5), súbelo. La primera vez, pregunta.
@@ -46,7 +49,8 @@ Su `LEEME.md` es la versión para el autor de este mismo procedimiento.
 
 `scripts/publicar.mjs` y `scripts/comprobar.mjs` leen la lista de palabras
 prohibidas de `~/.config/econplebs/prohibido.txt` (fuera del repo a
-propósito: la lista contiene el nombre del autor). Si no existe, avisan.
+propósito). Desde el 23-11-2026 el nombre del autor ya **no** debe estar en
+la lista, porque la web va firmada. Si no existe, avisan.
 Nunca copies esa lista dentro del repositorio.
 
 ## Muestras

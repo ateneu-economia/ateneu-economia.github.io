@@ -1,8 +1,9 @@
 ---
-// Carrusel en cuña de la portada (como en la 4.0): panel grafito con corte diagonal,
-// franja roja en la diagonal y foto de archivo a la derecha. Al cambiar, la cuña «se compone» de nuevo.
+// Carrusel de la portada: banda grafito, texto a la izquierda, foto de archivo a la derecha
+// y ficha de la foto abajo (versión industrial neutra, prueba 23-11-2026; antes, cuña con franja roja).
 // Sin artículos, muestra una sola diapositiva de presentación.
 import imagenes from "../datos/imagenes.json";
+import { AUTOR, MARCA } from "../configuracion.mjs";
 import {
   t, ruta, rutaArticulo, imagenDe, copiasDe, nombreCategoria, type Articulo, type Imagen, type Lang,
 } from "../lib/sitio";
@@ -21,12 +22,12 @@ const diapos: Diapo[] = articulos.length
       img: imagenDe(a),
     }))
   : [{
-      rotulo: "Econplebs",
-      titulo: t("subtitulo", lang),
+      rotulo: t("subtitulo", lang),
+      titulo: MARCA,
       texto: t("portadillaTexto", lang),
       href: ruta("sobreMi", lang),
-      enlace: t("queEs", lang),
-      img: imagenes.images.find((i) => i.key === "industria")!,
+      enlace: `${t("unProyectoDe", lang)} ${AUTOR}`,
+      img: imagenes.images.find((i) => i.key === "sociales")!,
     }];
 const total = diapos.length;
 const dos = (n: number) => String(n).padStart(2, "0");
@@ -67,7 +68,11 @@ const dos = (n: number) => String(n).padStart(2, "0");
             </a>
           </div>
         </div>
-        <a class="diapo__credito rotulo" href={d.img.source}>{d.img.credit}</a>
+        <p class="diapo__ficha">
+          <span class="diapo__fig rotulo">{`Fig. ${dos(i + 1)}`}</span>
+          <span>{d.img.alt[lang]}</span>
+          <a class="diapo__credito rotulo" href={d.img.source}>{d.img.credit}</a>
+        </p>
       </article>
     ))}
   </div>
@@ -165,85 +170,74 @@ const dos = (n: number) => String(n).padStart(2, "0");
 </script>
 
 <style>
+  /* Cabecera de la portada, industrial y neutra (prueba 23-11-2026): banda grafito,
+     corte recto entre texto y foto, ficha de archivo abajo. El rojo, solo como señal. */
   .carrusel {
-    --alto: 560px;
-    --b: max(35.5%, 450px);          /* dónde corta la diagonal abajo */
-    --a: calc(var(--b) + 0.36 * var(--alto)); /* y arriba (misma inclinación siempre) */
-    --grosor: 26px;                  /* ancho de la franja roja */
+    --alto: 500px;
     --izq: max(48px, calc((100% - 1200px) / 2));
     position: relative;
-    background: var(--banda);   /* panel grafito, como en la 4.0 */
+    background: var(--banda);
     color: #FFFFFF;
     overflow: hidden;
   }
-  .diapo { position: relative; height: var(--alto); }
-  :global(.js) .carrusel.listo .diapo:not(.activa) { display: none; }
-
-  .diapo__foto {
-    position: absolute;
-    top: 0; bottom: 0; right: 0;
-    left: calc(var(--b) - 40px);
-    background: var(--banda);
-  }
-  .diapo__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
-  .diapo__foto--obra { background: var(--papel); }
-  .diapo__foto--obra img { object-fit: contain; object-position: 70% 50%; padding: 2rem 2rem 3.5rem calc(0.36 * var(--alto) + 2rem); }
-
-  .diapo__panel {
-    position: absolute; inset: 0;
-    background: var(--banda);
-    clip-path: polygon(0 0, var(--a) 0, var(--b) 100%, 0 100%);
-  }
-  /* la caja de la franja solo ocupa la zona de la diagonal */
-  .diapo__franja {
-    position: absolute; top: 0; bottom: 0;
-    left: var(--b);
-    width: calc(var(--a) - var(--b) + var(--grosor));
-    background: var(--rojo);
-    clip-path: polygon(calc(100% - var(--grosor)) 0, 100% 0, var(--grosor) 100%, 0 100%);
-    z-index: 1;
-  }
-  .diapo__texto {
+  .diapo {
     position: relative;
-    padding: 3.5rem 0 0 var(--izq);
-    max-width: calc(var(--izq) + 25rem);
+    min-height: var(--alto);
+    display: grid;
+    grid-template-columns: minmax(0, 46%) minmax(0, 54%);
+    grid-template-rows: minmax(0, 1fr) auto;
   }
-  .diapo__rotulo { display: flex; align-items: center; gap: 0.6rem; color: #D9DBD8; }
-  .diapo__num {
-    background: #FFFFFF; color: var(--rojo);
-    padding: 0.15rem 0.4rem;
-    font-size: 0.68rem;
+  :global(.js) .carrusel.listo .diapo:not(.activa) { display: none; }
+  .diapo__foto { grid-column: 2; grid-row: 1; position: relative; overflow: hidden; background: #2A2D2F; }
+  .diapo__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+  .diapo__foto--obra { background: var(--papel); }
+  .diapo__foto--obra img { object-fit: contain; padding: 2rem; }
+  .diapo__franja { display: none; }
+  .diapo__panel { grid-column: 1; grid-row: 1; display: flex; align-items: center; }
+  .diapo__texto { padding: 3rem 3rem 3.5rem var(--izq); }
+  .diapo__texto::before {
+    content: ""; display: block;
+    width: 14px; height: 14px; background: var(--rojo);
+    margin-bottom: 1.4rem;
   }
+  .diapo__rotulo { display: flex; align-items: center; gap: 0.6rem; color: #C9CCC8; }
+  .diapo__num { background: var(--rojo); color: #FFFFFF; padding: 0.15rem 0.4rem; font-size: 0.68rem; }
   .diapo__titulo {
-    font-size: clamp(2.3rem, 4vw, 3.4rem);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    font-size: clamp(2.3rem, 3.8vw, 3.3rem);
     line-height: 0.98;
-    margin: 1.1rem 0 1.2rem;
-    max-width: 26rem;
+    margin: 0.9rem 0 1.2rem;
+    max-width: 30rem;
   }
   .diapo__titulo a { text-decoration: none; }
   .diapo__titulo a:hover { color: #E8735F; }
-  .diapo__extracto { font-size: 1.1rem; line-height: 1.5; max-width: 21rem; color: #E4E5E2; }
-  .diapo__leer { display: inline-block; margin-top: 1.6rem; }
-
-  .diapo__credito {
-    position: absolute; right: 1rem; bottom: 1.1rem; z-index: 2;
-    background: var(--banda); color: #FFFFFF;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.6rem;
-    text-decoration: none;
+  .diapo__extracto { font-size: 1.1rem; line-height: 1.55; max-width: 27rem; color: #E4E5E2; }
+  .diapo__leer { display: inline-block; margin-top: 1.6rem; border-bottom-color: rgba(255, 255, 255, 0.4); }
+  .diapo__leer:hover { color: #E8735F; border-bottom-color: var(--rojo); }
+  /* Ficha de archivo: qué es la foto y de dónde sale, a lo ancho */
+  .diapo__ficha {
+    grid-column: 1 / -1; grid-row: 2;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 0.75rem var(--izq);
+    color: #A9ACAA;
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
+  .diapo__ficha .rotulo { font-size: 0.62rem; }
+  .diapo__fig { color: #FFFFFF; }
+  .diapo__credito { color: #A9ACAA; text-decoration: none; margin-left: auto; }
   .diapo__credito:hover { color: #E8735F; }
-  .diapo__leer:hover { color: #E8735F; }
-
   .carrusel__controles {
-    position: absolute; left: var(--izq); bottom: 2.9rem; z-index: 3;
+    position: absolute; left: var(--izq); bottom: 4.2rem; z-index: 3;
     display: none; align-items: center; gap: 0.5rem;
   }
   :global(.js) .carrusel.listo .carrusel__controles { display: flex; }
   .carrusel__cuenta { margin-right: 1rem; }
   .carrusel__controles button { cursor: pointer; color: #FFFFFF; background: transparent; }
   .carrusel__flecha, .carrusel__pausa {
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     min-width: 40px; min-height: 40px;
     font-size: 1rem;
   }
@@ -251,59 +245,38 @@ const dos = (n: number) => String(n).padStart(2, "0");
   .carrusel__flecha:hover, .carrusel__pausa:hover { color: #E8735F; border-color: var(--rojo); }
   .carrusel__puntos { display: flex; gap: 6px; margin: 0 1.1rem; }
   .carrusel__puntos button { border: 0; padding: 0; min-width: 36px; min-height: 40px; background: transparent !important; }
-  .carrusel__puntos button::before { content: ""; display: block; height: 3px; background: rgba(255, 255, 255, 0.35); }
+  .carrusel__puntos button::before { content: ""; display: block; height: 3px; background: rgba(255, 255, 255, 0.3); }
   .carrusel__puntos button[aria-current="true"]::before { background: var(--rojo); }
 
-  /* Diagonales vivas: la cuña y la franja entran como un cartel que se compone */
   @media (prefers-reduced-motion: no-preference) {
-    .entrando .diapo__panel { animation: cuna 0.7s cubic-bezier(0.2, 0.75, 0.15, 1) both; }
-    .entrando .diapo__franja { animation: franja 0.55s cubic-bezier(0.3, 0.7, 0.2, 1) 0.18s both; }
-    .entrando .diapo__foto { animation: foto 0.8s ease-out both; }
+    .entrando .diapo__foto { animation: foto 0.7s ease-out both; }
     .entrando .diapo__texto > * { animation: sube 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
     .entrando .diapo__texto > :nth-child(2) { animation-delay: 0.08s; }
     .entrando .diapo__texto > :nth-child(3) { animation-delay: 0.16s; }
     .entrando .diapo__texto > :nth-child(4) { animation-delay: 0.22s; }
   }
-  @keyframes cuna {
-    from { clip-path: polygon(0 0, calc(var(--a) - 22%) 0, calc(var(--b) - 22%) 100%, 0 100%); }
-  }
-  @keyframes franja {
-    from { clip-path: polygon(calc(100% - var(--grosor)) 0, 100% 0, 100% 0, calc(100% - var(--grosor)) 0); }
-  }
-  @keyframes foto { from { opacity: 0.25; transform: translateX(2.5%); } }
+  @keyframes foto { from { opacity: 0.3; } }
   @keyframes sube { from { opacity: 0; transform: translateY(12px); } }
 
-  /* Móvil: foto arriba con corte diagonal, texto debajo */
   @media (max-width: 759px) {
-    .carrusel { --alto: auto; }
-    .diapo { height: auto; display: flex; flex-direction: column; }
-    .diapo__foto {
-      position: relative; left: 0;
-      height: 210px;
-      clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%);
-    }
+    .diapo { min-height: 0; display: flex; flex-direction: column; }
+    .diapo__foto { height: 220px; }
     .diapo__foto--obra img { padding: 1rem; }
-    .diapo__franja { display: none; }
-    .diapo__panel { position: static; clip-path: none; }
-    .diapo__texto { padding: 1.4rem 16px 6rem; max-width: none; }
-    .carrusel--solo .diapo__texto { padding-bottom: 2.2rem; }
-    .diapo__titulo { font-size: 2.1rem; margin: 0.8rem 0 1.1rem; }
-    .diapo__credito { top: 0.5rem; bottom: auto; right: 0.5rem; font-size: 0.55rem; }
-    .carrusel__controles { left: 16px; right: 16px; bottom: 1.6rem; gap: 0.35rem; }
+    .diapo__texto { padding: 1.6rem 16px 6rem; }
+    .carrusel--solo .diapo__texto { padding-bottom: 1.8rem; }
+    .diapo__titulo { font-size: 2.1rem; margin: 0.8rem 0 1rem; }
+    .diapo__ficha { padding: 0.7rem 16px; font-size: 0.8rem; }
+    .diapo__credito { margin-left: 0; }
+    .carrusel__controles { left: 16px; right: 16px; bottom: 5.4rem; gap: 0.35rem; }
     .carrusel__cuenta { margin-right: 0.3rem; }
     .carrusel__puntos { margin: 0 0.4rem; gap: 4px; }
     .carrusel__puntos button { min-width: 26px; }
     .carrusel__pausa { padding: 0 0.6rem; }
-    @media (prefers-reduced-motion: no-preference) {
-      .entrando .diapo__panel { animation: none; }
-      .entrando .diapo__foto { animation: foto-movil 0.6s cubic-bezier(0.2, 0.75, 0.15, 1) both; }
-    }
   }
-  @keyframes foto-movil { from { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); opacity: 0.4; } }
-
   @media (min-width: 760px) and (max-width: 999px) {
-    .carrusel { --alto: 520px; --b: 48%; }
-    .diapo__texto { max-width: calc(var(--b) + 4rem); padding-right: 2rem; }
+    .carrusel { --alto: 460px; }
+    .diapo { grid-template-columns: minmax(0, 52%) minmax(0, 48%); }
+    .diapo__texto { padding-right: 2rem; }
     .diapo__titulo { font-size: 2.3rem; }
   }
 </style>

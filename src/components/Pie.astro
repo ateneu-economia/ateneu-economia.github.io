@@ -1,4 +1,5 @@
 ---
+import { AUTOR, MARCA } from "../configuracion.mjs";
 import { t, ruta, type Lang, type Imagen } from "../lib/sitio";
 
 interface Props {
@@ -12,9 +13,9 @@ const creditos = [...new Map(imagenes.map((i) => [i.key, i])).values()];
 <footer class="pie">
   <div class="envoltorio">
     <a href={ruta("portada", lang)} class="pie__logo" aria-label={t("portada", lang)}>
-      <img src="/logo/logo-paper.svg" alt="Econplebs" width="210" height="46" />
+      <span class="pie__nombre"><svg class="pie__icona" viewBox="0 0 100 100" aria-hidden="true"><polyline points="8,62 50,24 92,62" fill="none" stroke="currentColor" stroke-width="11" stroke-linejoin="miter"/><rect x="8" y="74" width="84" height="12" fill="#C8412F"/></svg>{MARCA}</span>
     </a>
-    <p class="rotulo pie__lema">{t("subtitulo", lang)} · econplebs.org</p>
+    <p class="rotulo pie__lema">{t("subtitulo", lang)} · {t("unProyectoDe", lang)} {AUTOR}</p>
     <ul class="pie__enlaces">
       <li><a class="rotulo" href={ruta("contacto", lang)}>{t("contacto", lang)}</a></li>
       <li><a class="rotulo" href={ruta("privacidad", lang)}>{t("privacidad", lang)}</a></li>
@@ -37,12 +38,15 @@ const creditos = [...new Map(imagenes.map((i) => [i.key, i])).values()];
 
 <style>
   .pie {
-    background: var(--banda);
-    color: var(--papel-claro);
+    background: var(--manila);
+    border-top: 1px solid var(--manila-2);
+    color: var(--grafito);
     padding: 1.5rem 0 2rem;
   }
-  .pie__logo img { width: 210px; height: auto; }
-  .pie__lema { color: #A9ACAA; margin: 1rem 0 1.4rem; }
+  .pie__logo { text-decoration: none; }
+  .pie__nombre { display: inline-flex; align-items: center; gap: 0.7rem; font-family: var(--f-titulo); font-weight: 700; text-transform: uppercase; font-size: 2rem; line-height: 1; color: var(--grafito); }
+  .pie__icona { width: 46px; height: 46px; }
+  .pie__lema { color: var(--gris); margin: 1rem 0 1.4rem; }
   .pie__enlaces {
     list-style: none; margin: 0; padding: 0;
     display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem;
@@ -51,5 +55,5 @@ const creditos = [...new Map(imagenes.map((i) => [i.key, i])).values()];
   .pie a:hover { color: var(--rojo-texto); }
   .pie__creditos { margin-top: 1rem; line-height: 1.8; }
   .pie__creditos > span:first-child { margin-right: 0.5rem; }
-  .pie__gris { color: #A9ACAA; }
+  .pie__gris { color: var(--gris); }
 </style>

@@ -31,29 +31,20 @@ export async function getStaticPaths() {
     fija("investigacion", { vista: "seccion", pagina: pagina("investigacion") });
     fija("avances", { vista: "lista", titulo: t("economiaPolitica", lang), articulos: de("investigacion"), categoria: false, vacio: t("sinAvances", lang) });
     fija("didactica", { vista: "lista", titulo: t("didactica", lang), articulos: de("didactica"), categoria: false, vacio: t("sinDidactica", lang) });
-    fija("sindical", { vista: "lista", titulo: t("cuadernoSindical", lang), articulos: de("sindical"), categoria: false, imagenes: true, vacio: t("sinSindical", lang) });
     fija("teoria", {
       vista: "lista", titulo: t("cuadernoTeoria", lang), articulos: de("teoria"), categoria: false, vacio: t("sinTeoria", lang),
       intro: { rotulo: t("investigacion", lang), titulo: t("cuadernoTeoria", lang), texto: t("teoriaLead", lang), lista: t("notas", lang) },
     });
     fija("aula", { vista: "lista", titulo: t("propuestasAula", lang), articulos: de("aula"), categoria: false, imagenes: true, vacio: t("sinPropuestas", lang) });
-    fija("opinion", { vista: "lista", titulo: t("opinion", lang), articulos: de("opinion"), categoria: false, imagenes: true });
 
     // Páginas generales de Intervención y Docencia: todo lo de la pestaña, con enlaces a sus secciones (las que tienen contenido)
     const archivosRecursos = Object.keys(import.meta.glob("/contenido/recursos/[!_]*.md")).length > 0;
     const hayMateriales = archivosRecursos && (await getCollection("recursos", (r) => (!r.data.lang || r.data.lang === lang) && r.data.area !== "investigacion")).length > 0;
     const enlace = (cat: string, clave: ClaveRuta, texto: string) => (MOSTRAR_SECCIONES_VACIAS || de(cat).length ? [{ texto, href: ruta(clave, lang) }] : []);
-    fija("intervencion", {
-      vista: "lista", titulo: t("intervencion", lang), articulos: de("opinion", "coyuntura", "sindical"), imagenes: true,
-      intro: {
-        rotulo: t("ideasEnDebate", lang), titulo: t("intervencion", lang), texto: t("intervencionTexto", lang), lista: t("articulos", lang),
-        enlaces: [...enlace("opinion", "opinion", t("opinion", lang)), ...enlace("coyuntura", "coyuntura", t("coyuntura", lang)), ...enlace("sindical", "sindical", t("cuadernoSindical", lang))],
-      },
-    });
     fija("docencia", {
       vista: "lista", titulo: t("docencia", lang), articulos: de("didactica", "aula"), imagenes: true,
       intro: {
-        rotulo: t("enElAula", lang), titulo: t("docencia", lang), texto: t("docenciaTexto", lang), lista: t("articulos", lang),
+        rotulo: t("enElAula", lang), titulo: t("docencia", lang), texto: t("docenciaTexto", lang), lista: t("articulos", lang), imagen: "preguntas",
         enlaces: [
           ...enlace("didactica", "didactica", t("didactica", lang)), ...enlace("aula", "aula", t("propuestasAula", lang)),
           ...(MOSTRAR_SECCIONES_VACIAS || hayMateriales ? [{ texto: t("materiales", lang), href: ruta("materiales", lang) }] : []),
@@ -61,7 +52,6 @@ export async function getStaticPaths() {
         ],
       },
     });
-    fija("coyuntura", { vista: "lista", titulo: nombreCategoria("coyuntura", lang), articulos: de("coyuntura"), categoria: false, imagenes: true });
     fija("articulos", { vista: "lista", titulo: t("articulos", lang), articulos: lista });
     fija("recursos", { vista: "recursos", pagina: pagina("recursos") });
     fija("datos", { vista: "recursos", area: "investigacion" });

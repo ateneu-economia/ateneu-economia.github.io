@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Cabecera from "../components/Cabecera.astro";
 import Pie from "../components/Pie.astro";
 import { t, type Lang, type Imagen } from "../lib/sitio";
-import { INDEXAR } from "../configuracion.mjs";
+import { INDEXAR, AUTOR, MARCA } from "../configuracion.mjs";
 
 interface Props {
   lang: Lang;
@@ -16,7 +16,7 @@ interface Props {
 }
 const { lang, titulo, descripcion = t("subtitulo", lang), otraLengua, imagenes = [], tipo = "website", tarjeta = `/tarjetas/${lang}-portada.jpg` } = Astro.props;
 const tarjetaUrl = new URL(tarjeta, Astro.site).href;
-const tituloCompleto = titulo ? `${titulo} · Econplebs` : `Econplebs · ${t("subtitulo", lang)}`;
+const tituloCompleto = titulo ? `${titulo} · ${MARCA}` : `${MARCA} · ${t("subtitulo", lang)}`;
 const canonica = new URL(Astro.url.pathname, Astro.site);
 const alternativa = new URL(otraLengua, Astro.site);
 ---
@@ -28,24 +28,24 @@ const alternativa = new URL(otraLengua, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{tituloCompleto}</title>
     <meta name="description" content={descripcion} />
-    <meta name="author" content="Econplebs" />
+    <meta name="author" content={AUTOR} />
     {!INDEXAR && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonica} />
     <link rel="alternate" hreflang={lang === "es" ? "ca" : "es"} href={alternativa} />
-    <link rel="alternate" type="application/rss+xml" title="Econplebs" href={lang === "es" ? "/rss.xml" : "/ca/rss.xml"} />
+    <link rel="alternate" type="application/rss+xml" title={MARCA} href={lang === "es" ? "/rss.xml" : "/ca/rss.xml"} />
     <link rel="icon" href="/logo/favicon.svg" type="image/svg+xml" />
-    <meta property="og:site_name" content="Econplebs" />
+    <meta property="og:site_name" content={MARCA} />
     <meta property="og:type" content={tipo} />
-    <meta property="og:title" content={titulo ?? "Econplebs"} />
+    <meta property="og:title" content={titulo ?? AUTOR} />
     <meta property="og:description" content={descripcion} />
     <meta property="og:locale" content={lang === "es" ? "es_ES" : "ca_ES"} />
     <meta property="og:url" content={canonica} />
     <meta property="og:image" content={tarjetaUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={titulo ?? `Econplebs · ${t("subtitulo", lang)}`} />
+    <meta property="og:image:alt" content={titulo ?? `${AUTOR} · ${t("subtitulo", lang)}`} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={titulo ?? "Econplebs"} />
+    <meta name="twitter:title" content={titulo ?? AUTOR} />
     <meta name="twitter:description" content={descripcion} />
     <meta name="twitter:image" content={tarjetaUrl} />
     <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />

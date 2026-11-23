@@ -1,35 +1,37 @@
-# Econplebs (web estática)
+# Ateneu d’Economia (web estática)
 
-Web bilingüe (castellano / valenciano) de Econplebs, el cuaderno de
-investigación económica de un profesor de Economía de secundaria.
-Menú por públicos (02-11-2026): **Investigación** (investigación aplicada
-`investigacion`, cuaderno de teoría `teoria`, Datos y código, Publicaciones),
-**Intervención** (opinión `opinion`, coyuntura `coyuntura`, cuaderno sindical
-`sindical`), **Docencia** (didáctica `didactica`, propuestas de aula `aula`,
-Materiales, Observatorio) y **Sobre mí**. Cada pestaña enlaza a su página
-general; las secciones vacías no salen en el menú. Subtítulo: «Economía política desde abajo».
-Lo educativo para el alumnado vive en el Observatorio (otra web), enlazado
-desde el menú (decisión del autor, 01-11-2026).
-El encargo completo está en `ENCARGO.md` del paquete de traspaso
-(`Web-personal/paso-a-code/` en el vault de Obsidian del autor).
+Web bilingüe (castellano / valenciano) del **Ateneu d’Economia**, el proyecto
+de Jordi Vila, profesor de Economía de secundaria, sobre investigación en
+didáctica de la economía, propuestas de aula, materiales y datos.
+Lema: «Aprender economía haciendo economía» / «Aprendre economia fent economia».
+Logotipo: el nombre en Archivo Narrow con un tejado (el *oîkos*) y la barra roja.
+Estética (23-11-2026, propuesta «casa de papel»): paleta cálida de papel (marfil
+`#FAF5EB`, manila `#F1E6CF`, tinta `#27221D`, rojo `#C8412F` solo en grafismos y
+`#A5301F` para texto). Portada: `src/components/Presentacion.astro` (lema y foto
+con tejado sobre la barra roja) y banda «D’on ve el nom». Pie claro sobre manila.
+Menú (23-11-2026): **Investigación** (didáctica `didactica`, Publicaciones,
+Datos y código), **En el aula** (propuestas de aula `aula`, Materiales),
+**Observatorio ↗** (la web del alumnado, `HERRAMIENTAS_URL`) y **Sobre mí**.
+Intervención (opinión, coyuntura) y el Cuaderno sindical se retiraron el
+23-11-2026: sus categorías siguen en el esquema, pero `CATEGORIAS_RETIRADAS`
+(src/lib/sitio.ts) impide publicar sus artículos y no tienen páginas.
+Antes (hasta el 23-11-2026) la web era «Econplebs», anónima y de economía
+política; la dirección provisional y el repositorio conservan ese nombre.
 
 ## Reglas
 
-- **Anonimato en la web.** El nombre del autor no aparece nunca en la web
-  publicada (páginas, metadatos, RSS, índice del buscador), ni en el contenido,
-  el código, los nombres de archivo o este archivo. Todo se firma «Econplebs».
-  Commits con `user.name = Econplebs` y `noreply@econplebs.org`.
-  Decisión del autor (31-10-2026): la cuenta de GitHub que aloja el
-  repositorio sí puede llevar su nombre; el anonimato estricto se limita a la
-  web.
+- **Autoría.** La web y los artículos los firma Jordi Vila (`AUTOR` en
+  src/configuracion.mjs); la marca es `MARCA`. El anonimato se levantó el
+  23-11-2026 por decisión del autor. Ningún otro dato personal (dirección,
+  teléfono, centro de trabajo, alumnado) aparece en la web.
 - **Sin terceros.** Nada de Google Fonts, analítica, CDN ni incrustados. Las
   fuentes van en el propio proyecto.
-- **Web de herramientas del alumnado (Observatorio).** Econplebs la enlaza con
-  «Herramientas ↗» mediante `HERRAMIENTAS_URL` (decisión del autor, 31-10-2026,
+- **Web de herramientas del alumnado (Observatorio).** La web la enlaza con
+  «Observatorio ↗» mediante `HERRAMIENTAS_URL` (decisión del autor, 31-10-2026,
   que deja sin efecto la regla de no enlazarlas). Vaciar esa variable quita el enlace.
 - **Imágenes solo del banco**, con crédito y enlace a la ficha. Fotos en gris;
   obras y carteles en color (ya adaptado a la paleta).
-- **Diseño (estética industrial del tema 4.0, W-19):** hormigón `#E6E7E3`,
+- **Diseño (antes, estética industrial del tema 4.0, W-19; colores sustituidos el 23-11-2026 por la paleta cálida de arriba):** hormigón `#E6E7E3`,
   esmalte `#EFEFEC`, grafito `#1F2224` / `#16181A`, rojo `#C8412F` solo como
   acento (texto en rojo `#B03826` y gris `#5F6361` por contraste AA).
   Archivo Narrow en mayúsculas (titulares), Source Serif 4 (lectura),
@@ -44,17 +46,16 @@ El encargo completo está en `ENCARGO.md` del paquete de traspaso
 
 ## Publicar
 
-El autor escribe en Obsidian (`Web-personal/publicar/`) y dice «publica X».
-Claude copia el archivo al repositorio (nunca enlaza el vault), comprueba el
-frontmatter y la ausencia de datos personales, genera, revisa y despliega.
-Procedimiento paso a paso: `docs/PUBLICAR.md` (scripts `npm run publicar` y
-`npm run comprobar`).
+El espacio `Web-personal/` del vault de Obsidian se eliminó el 23-11-2026.
+Hasta que el autor decida dónde escribe los textos, se los pasa a Claude (o
+los deja en `contenido/`), y Claude comprueba el frontmatter, genera, revisa y
+prepara el cambio. Procedimiento técnico: `docs/PUBLICAR.md` (scripts
+`npm run publicar` y `npm run comprobar`).
 
 ## Antes de dar algo por terminado
 
 - Generar la web y abrir las páginas tocadas en escritorio y móvil.
 - Comprobar que no hay peticiones a otros dominios.
-- Buscar el nombre del autor en el HTML generado: debe dar cero resultados.
 
 ## Estructura del proyecto
 

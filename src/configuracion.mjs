@@ -1,4 +1,4 @@
-// Configuración de Econplebs.
+// Configuración del Ateneu d’Economia.
 // Este es el único archivo de ajustes. Cambia solo lo que hay entre comillas.
 
 // Dirección pública de la web.
@@ -24,3 +24,12 @@ export const MOSTRAR_SECCIONES_VACIAS = true;
 // Mostrar los artículos de muestra (sample: true).
 // En la versión publicada tiene que ser false (true solo para ver ejemplos en tu Mac).
 export const MOSTRAR_MUESTRAS = false;
+
+// Autor que firma la web y los artículos (sin anonimato desde el 23-11-2026).
+export const AUTOR = "Jordi Vila";
+// Formas del nombre para las citas: APA (apellido, inicial) y BibTeX/RIS (apellido, nombre).
+export const AUTOR_APA = "Vila, J.";
+export const AUTOR_BIB = "Vila, Jordi";
+
+// Marca del proyecto (desde el 23-11-2026). Se escribe igual en las dos lenguas.
+export const MARCA = "Ateneu d’Economia";

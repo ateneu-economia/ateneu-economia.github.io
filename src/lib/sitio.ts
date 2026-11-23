@@ -13,7 +13,10 @@ export const otro = (lang: Lang): Lang => (lang === "es" ? "ca" : "es");
 
 // Textos de la interfaz en los dos idiomas (la mayoría salen de textos-interfaz.json).
 const textos = {
-  subtitulo: { es: "Economía política desde abajo", ca: "Economia política des de baix" },
+  subtitulo: { es: "Aprender economía haciendo economía", ca: "Aprendre economia fent economia" },
+  unProyectoDe: { es: "Un proyecto de", ca: "Un projecte de" },
+  queHago: { es: "Didáctica de la economía", ca: "Didàctica de l’economia" },
+  enClase: { es: "En el aula", ca: "A l’aula" },
   investigacion: { es: "Investigación", ca: "Recerca" },
   lineas: { es: "Líneas de investigación", ca: "Línies de recerca" },
   avances: { es: "Avances", ca: "Avanços" },
@@ -31,7 +34,7 @@ const textos = {
   todo: { es: "Todo", ca: "Tot" },
   coyuntura: { es: "Análisis de coyuntura", ca: "Anàlisi de conjuntura" },
   sobreMi: { es: "Sobre mí", ca: "Sobre mi" },
-  queEs: { es: "Qué es Econplebs", ca: "Què és Econplebs" },
+  queEs: { es: "Qué es el Ateneu", ca: "Què és l’Ateneu" },
   contacto: { es: "Contacto", ca: "Contacte" },
   privacidad: { es: "Privacidad", ca: "Privacitat" },
   buscar: { es: "Buscar", ca: "Cercar" },
@@ -44,7 +47,7 @@ const textos = {
   menuPrincipal: { es: "Menú principal", ca: "Menú principal" },
   idioma: { es: "Idioma", ca: "Idioma" },
   saltar: { es: "Saltar al contenido", ca: "Botar al contingut" },
-  portada: { es: "Portada de Econplebs", ca: "Portada d’Econplebs" },
+  portada: { es: "Portada del Ateneu d’Economia", ca: "Portada de l’Ateneu d’Economia" },
   licencia: { es: "Licencia CC BY-SA 4.0", ca: "Llicència CC BY-SA 4.0" },
   creditosFotos: { es: "Fotos", ca: "Fotos" },
   copiasReducidas: { es: "(copias reducidas)", ca: "(còpies reduïdes)" },
@@ -59,8 +62,8 @@ const textos = {
   investigacionDidactica: { es: "Economía política", ca: "Economia política" },
   queInvestigo: { es: "Qué estoy investigando", ca: "Què estic investigant" },
   queInvestigoTexto: {
-    es: "Cómo se produce y se reparte la riqueza: salarios, beneficios y crisis, con datos abiertos y al servicio de quienes trabajan.",
-    ca: "Com es produeix i es reparteix la riquesa: salaris, beneficis i crisis, amb dades obertes i al servei de qui treballa.",
+    es: "Qué conceptos conviene poner en el centro, qué cuentan los manuales, cómo aprende el alumnado y qué funciona de verdad en el aula.",
+    ca: "Quins conceptes convé posar al centre, què conten els manuals, com aprén l’alumnat i què funciona de veritat a l’aula.",
   },
   lineasCorto: { es: "Líneas", ca: "Línies" },
   abstracto: { es: "abstracto", ca: "abstracte" },
@@ -73,8 +76,8 @@ const textos = {
     ca: "Encara no hi ha articles publicats. Prompte hi haurà lectures ací.",
   },
   portadillaTexto: {
-    es: "Un cuaderno de investigación económica: cómo se produce y se reparte la riqueza, y por qué llegan las crisis. Los primeros avances, muy pronto.",
-    ca: "Un quadern de recerca econòmica: com es produeix i es reparteix la riquesa, i per què arriben les crisis. Els primers avanços, molt prompte.",
+    es: "Investigación en didáctica de la economía, propuestas de aula, materiales y datos para trabajar en clase. Un espacio para aprender economía practicándola: observando, construyendo y debatiendo.",
+    ca: "Recerca en didàctica de l’economia, propostes d’aula, materials i dades per a treballar a classe. Un espai per a aprendre economia practicant-la: observant, construint i debatent.",
   },
   docencia: { es: "Docencia", ca: "Docència" },
   intervencion: { es: "Intervención", ca: "Intervenció" },
@@ -123,8 +126,8 @@ const textos = {
   // Barra lateral
   quienEscribe: { es: "Quién escribe", ca: "Qui escriu" },
   quienEscribeTexto: {
-    es: "Un profesor de Economía de secundaria que investiga desde la economía política: cómo se produce y se reparte la riqueza, y cómo enseñarlo en el aula.",
-    ca: "Un professor d’Economia de secundària que investiga des de l’economia política: com es produeix i es reparteix la riquesa, i com ensenyar-ho a l’aula.",
+    es: "Un profesor de Economía de secundaria que investiga cómo se enseña y cómo se aprende la economía.",
+    ca: "Un professor d’Economia de secundària que investiga com s’ensenya i com s’aprén l’economia.",
   },
   masSobreMi: { es: "Más sobre mí", ca: "Més sobre mi" },
   porTemas: { es: "Por temas", ca: "Per temes" },
@@ -292,10 +295,13 @@ export function nombreCategoria(cat: Categoria, lang: Lang): string {
 }
 
 // Artículos visibles en un idioma, del más reciente al más antiguo.
+// Secciones retiradas el 23-11-2026 (Intervención y Cuaderno sindical): sus artículos no se publican.
+export const CATEGORIAS_RETIRADAS = ["opinion", "coyuntura", "sindical"];
+
 export async function articulosDe(lang: Lang): Promise<Articulo[]> {
   const todos = await getCollection(
     "articulos",
-    (a) => a.data.lang === lang && !a.data.draft && (MOSTRAR_MUESTRAS || !a.data.sample),
+    (a) => a.data.lang === lang && !a.data.draft && (MOSTRAR_MUESTRAS || !a.data.sample) && !CATEGORIAS_RETIRADAS.includes(a.data.category),
   );
   return todos.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }

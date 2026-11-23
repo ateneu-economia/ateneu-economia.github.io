@@ -1,5 +1,5 @@
 // Canal RSS de cada idioma: título, enlace, fecha, extracto y texto completo de cada artículo.
-import { SITIO } from "../configuracion.mjs";
+import { SITIO, AUTOR, MARCA } from "../configuracion.mjs";
 import { t, ruta, articulosDe, rutaArticulo, prepararCuerpo, type Lang } from "./sitio";
 
 const esc = (s: string) =>
@@ -16,7 +16,7 @@ export async function canalRss(lang: Lang): Promise<Response> {
       <link>${abs(rutaArticulo(a))}</link>
       <guid isPermaLink="true">${abs(rutaArticulo(a))}</guid>
       <pubDate>${a.data.date.toUTCString()}</pubDate>
-      <dc:creator>Econplebs</dc:creator>
+      <dc:creator>${esc(AUTOR)}</dc:creator>
       <description>${esc(a.data.excerpt)}</description>
 ${html ? `      <content:encoded><![CDATA[${html.replaceAll("]]>", "]]]]><![CDATA[>")}]]></content:encoded>` : ""}
     </item>`;
@@ -25,7 +25,7 @@ ${html ? `      <content:encoded><![CDATA[${html.replaceAll("]]>", "]]]]><![CDAT
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Econplebs</title>
+    <title>${esc(MARCA)}</title>
     <link>${abs(ruta("portada", lang))}</link>
     <atom:link href="${abs(ruta("rss", lang))}" rel="self" type="application/rss+xml" />
     <description>${esc(t("subtitulo", lang))}</description>

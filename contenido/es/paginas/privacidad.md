@@ -9,7 +9,7 @@ Esta web es un proyecto personal, sin publicidad ni fines comerciales, y está h
 
 ## Responsable
 
-Econplebs, web personal sin fines comerciales. Contacto: {{correo_contacto}}
+Jordi Vila, autor del Ateneu d’Economia, web personal sin fines comerciales. Contacto: {{correo_contacto}}
 
 ## Qué datos se recogen
 
@@ -19,7 +19,7 @@ Si escribes al correo de contacto, tu mensaje se usa únicamente para respondert
 
 ## Registros del alojamiento
 
-La web se aloja en GitHub Pages (GitHub, Inc., con servidores también en Estados Unidos). Como cualquier servidor, puede anotar automáticamente datos técnicos de cada visita (dirección IP, fecha y página pedida) para mantenerla segura y en funcionamiento. Econplebs no tiene acceso a esos registros ni los usa.
+La web se aloja en GitHub Pages (GitHub, Inc., con servidores también en Estados Unidos). Como cualquier servidor, puede anotar automáticamente datos técnicos de cada visita (dirección IP, fecha y página pedida) para mantenerla segura y en funcionamiento. El autor no tiene acceso a esos registros ni los usa.
 
 ## Cookies
 

@@ -7,7 +7,7 @@ import {
   minutosLectura, nombreCategoria, prepararCuerpo, traduccionDe, otro, type Articulo,
 } from "../lib/sitio";
 import { citaTexto, rutaCita, urlArticulo } from "../lib/citas";
-import { SITIO } from "../configuracion.mjs";
+import { SITIO, AUTOR, AUTOR_BIB, MARCA } from "../configuracion.mjs";
 
 interface Props { articulo: Articulo; anterior?: Articulo; siguiente?: Articulo; lista: Articulo[] }
 const { articulo, anterior, siguiente, lista } = Astro.props;
@@ -53,8 +53,8 @@ const jsonLd = {
   dateModified: fechaISO(data.updated ?? data.date),
   inLanguage: lang === "es" ? "es" : "ca",
   url: urlArticulo(articulo),
-  author: { "@type": "Organization", name: "Econplebs", url: SITIO },
-  publisher: { "@type": "Organization", name: "Econplebs", url: SITIO },
+  author: { "@type": "Person", name: AUTOR, url: new URL("/sobre-mi/", SITIO).href },
+  publisher: { "@type": "Organization", name: MARCA, url: SITIO },
   license: "https://creativecommons.org/licenses/by-sa/4.0/",
   keywords: data.tags.length ? data.tags.join(", ") : undefined,
 };
@@ -63,16 +63,16 @@ const jsonLd = {
 <Base lang={lang} titulo={data.title} descripcion={data.excerpt} otraLengua={otraLengua} tipo="article" tarjeta={`/tarjetas/${lang}-${data.slug}.jpg`}>
   <Fragment slot="head">
     {!esNota && <meta name="citation_title" content={data.title} />}
-    <meta name="citation_author" content="Econplebs" />
+    <meta name="citation_author" content={AUTOR_BIB} />
     <meta name="citation_publication_date" content={fechaScholar} />
     <meta name="citation_online_date" content={fechaScholar} />
     <meta name="citation_language" content={lang} />
-    <meta name="citation_publisher" content="Econplebs" />
+    <meta name="citation_publisher" content={MARCA} />
     <meta name="citation_fulltext_html_url" content={urlArticulo(articulo)} />
     {data.excerpt && <meta name="citation_abstract" content={data.excerpt} />}
     {data.tags.map((e) => <meta name="citation_keywords" content={e} />)}
     <meta name="DC.title" content={data.title} />
-    <meta name="DC.creator" content="Econplebs" />
+    <meta name="DC.creator" content={AUTOR} />
     <meta name="DC.date" content={fechaISO(data.date)} />
     <meta name="DC.language" content={lang} />
     <meta name="DC.rights" content="CC BY-SA 4.0" />
@@ -83,7 +83,7 @@ const jsonLd = {
 
   <article class:list={["articulo", { "articulo--con-indice": conIndice }]} data-articulo data-pagefind-body data-muestra={data.sample ? "" : undefined}>
     <header class="articulo__cabecera">
-      <p class="solo-imprimir rotulo articulo__imprenta">Econplebs · {urlArticulo(articulo).replace(/^https:\/\//, "")}</p>
+      <p class="solo-imprimir rotulo articulo__imprenta">{MARCA} · {urlArticulo(articulo).replace(/^https:\/\//, "")}</p>
       <p class="rotulo articulo__ruta" data-pagefind-ignore>
         <a href={ruta("articulos", lang)}><span aria-hidden="true">← </span>{t("articulos", lang)}</a>
         <span aria-hidden="true">/</span>
@@ -115,7 +115,7 @@ const jsonLd = {
           <p class="nota-estado__aviso">{t("notaProvisional", lang)}</p>
         </div>
       )}
-      <p class="rotulo rotulo--gris articulo__firma" data-pagefind-ignore>Econplebs</p>
+      <p class="rotulo rotulo--gris articulo__firma" data-pagefind-ignore>{AUTOR}</p>
     </header>
 
     {conIndice && (
