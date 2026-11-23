@@ -16,7 +16,9 @@ Intervención (opinión, coyuntura) y el Cuaderno sindical se retiraron el
 23-11-2026: sus categorías siguen en el esquema, pero `CATEGORIAS_RETIRADAS`
 (src/lib/sitio.ts) impide publicar sus artículos y no tienen páginas.
 Antes (hasta el 23-11-2026) la web era «Econplebs», anónima y de economía
-política; la dirección provisional y el repositorio conservan ese nombre.
+política. El 23-11-2026 la cuenta de GitHub pasó de `econplebs` a
+`ateneu-economia`: la web está en https://ateneu-economia.github.io (repositorio
+`ateneu-economia.github.io`); econplebs.github.io ya no existe.
 
 ## Reglas
 

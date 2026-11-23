@@ -2,15 +2,16 @@
 // Este es el único archivo de ajustes. Cambia solo lo que hay entre comillas.
 
 // Dirección pública de la web.
-// Provisional y gratuita mientras no se compre econplebs.org; entonces: "https://econplebs.org"
-export const SITIO = "https://econplebs.github.io";
+// Gratuita (cuenta de GitHub ateneu-economia, antes econplebs, renombrada el 23-11-2026).
+// Si algún día se compra un dominio propio (p. ej. ateneueconomia.org), cambiarlo aquí.
+export const SITIO = "https://ateneu-economia.github.io";
 
 // ¿Pueden los buscadores (Google…) indexar la web?
-// false mientras la dirección sea provisional; true al pasar a econplebs.org.
+// false mientras la dirección sea provisional; true cuando se decida abrir la web a los buscadores.
 export const INDEXAR = false;
 
 // Correo público de contacto (nunca uno personal). Vacío = no se muestra.
-// Vacío hasta que exista el buzón; entonces: "contacto@econplebs.org"
+// Vacío hasta que exista el buzón.
 export const CORREO_PUBLICO = "";
 
 // Enlace «Observatorio ↗» del menú principal (la web educativa, para el alumnado).
