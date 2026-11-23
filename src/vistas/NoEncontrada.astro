@@ -14,7 +14,7 @@ const { lang } = Astro.props;
     <form role="search" action={ruta("buscar", lang)} method="get">
       <label class="solo-lectores" for="q-404">{t("buscar", lang)}</label>
       <input id="q-404" type="search" name="q" placeholder={t("buscar", lang)} />
-      <button class="boton rotulo" type="submit">{t("buscar", lang)}</button>
+      <button class="boton" type="submit">{t("buscar", lang)}</button>
     </form>
     <a class="rotulo enlace-subrayado" href={ruta("portada", lang)}>{t("volverPortada", lang)}</a>
   </div>

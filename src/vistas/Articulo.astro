@@ -134,7 +134,6 @@ const jsonLd = {
     )}
 
     <footer class="articulo__pie" data-pagefind-ignore>
-      <p class="rotulo">{t("finArticulo", lang)}</p>
       {data.tags.length > 0 && (
         <p class="rotulo rotulo--rojo articulo__etiquetas">
           {t("etiquetas", lang)}:{" "}
@@ -288,7 +287,7 @@ const jsonLd = {
   }
 
   .articulo {
-    --col: min(760px, calc(100% - 2 * var(--margen)));
+    --col: min(680px, calc(100% - 2 * var(--margen)));
     display: grid;
     grid-template-columns: 1fr var(--col) 1fr;
     padding: 1.6rem 0 0;
@@ -304,7 +303,7 @@ const jsonLd = {
     color: var(--gris);
   }
   .articulo__meta a { text-decoration: none; }
-  .articulo__titulo { font-size: clamp(2.3rem, 5vw, 3.6rem); margin: 1.4rem 0 1.6rem; line-height: 1.08; }
+  .articulo__titulo { font-size: clamp(2.2rem, 4.5vw, 3.2rem); margin: 1.4rem 0 1.6rem; line-height: 1.08; }
   .articulo__entradilla {
     border-left: 3px solid var(--rojo);
     padding: 0.1rem 0 0.1rem 1.1rem;
@@ -366,7 +365,7 @@ const jsonLd = {
   .cuerpo { position: relative; }
   .cuerpo :global(p),
   .cuerpo :global(ul),
-  .cuerpo :global(ol) { max-width: 68ch; line-height: 1.75; margin: 0 0 1.3rem; font-size: 1.08rem; }
+  .cuerpo :global(ol) { max-width: none; line-height: 1.75; margin: 0 0 1.3rem; font-size: 1.08rem; }
   .cuerpo :global(h2) { font-size: 1.75rem; margin: 2.6rem 0 1.2rem; scroll-margin-top: 1.5rem; }
   .cuerpo :global(h3) { font-size: 1.3rem; margin: 2rem 0 0.9rem; }
   .cuerpo :global(a) { text-decoration-color: var(--rojo); text-underline-offset: 0.18em; }
@@ -416,7 +415,7 @@ const jsonLd = {
   /* Notas al margen (pantallas anchas) */
   .cuerpo :global(.nota-margen) {
     position: absolute;
-    left: 44.5rem;
+    left: calc(100% + 2.5rem);
     width: 200px;
     font-size: 0.82rem; line-height: 1.5;
     color: var(--gris);

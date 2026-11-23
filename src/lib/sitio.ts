@@ -122,7 +122,7 @@ const textos = {
   },
   sinSindical: { es: "Todavía no hay entradas del cuaderno sindical.", ca: "Encara no hi ha entrades del quadern sindical." },
   datosInvestigacion: { es: "Datos", ca: "Dades" },
-  archivoCompleto: { es: "Ver el archivo completo ↗", ca: "Veure l’arxiu complet ↗" },
+  archivoCompleto: { es: "Todos los artículos →", ca: "Tots els articles →" },
   // Barra lateral
   quienEscribe: { es: "Quién escribe", ca: "Qui escriu" },
   quienEscribeTexto: {
@@ -164,10 +164,10 @@ const textos = {
   },
   // Investigación
   investigacionLead: {
-    es: "Economía política desde tres frentes: investigación aplicada, con datos abiertos y métodos que cualquiera puede comprobar; un cuaderno sindical, para quien negocia y se organiza; y un cuaderno de teoría, donde pienso en voz alta autores y conceptos.",
-    ca: "Economia política des de tres fronts: recerca aplicada, amb dades obertes i mètodes que qualsevol pot comprovar; un quadern sindical, per a qui negocia i s’organitza; i un quadern de teoria, on pense en veu alta autors i conceptes.",
+    es: "Cómo se enseña y cómo se aprende la economía: artículos de didáctica de la economía, notas de trabajo sobre teorías y conceptos, y los datos que los sostienen, para que cualquiera pueda comprobarlos y reutilizarlos.",
+    ca: "Com s’ensenya i com s’aprén l’economia: articles de didàctica de l’economia, notes de treball sobre teories i conceptes, i les dades que els sustenten, perquè qualsevol puga comprovar-les i reutilitzar-les.",
   },
-  sinAvances: { es: "Todavía no hay avances publicados.", ca: "Encara no hi ha avanços publicats." },
+  sinAvances: { es: "Todavía no hay artículos publicados.", ca: "Encara no hi ha articles publicats." },
   todosAvances: { es: "Todos los avances →", ca: "Tots els avanços →" },
   publicacionesPreparando: { es: "La lista de publicaciones se está preparando.", ca: "La llista de publicacions s’està preparant." },
   todasPublicaciones: { es: "Todas las publicaciones →", ca: "Totes les publicacions →" },

@@ -58,21 +58,22 @@ const foto = intro?.imagen ? imagenesBanco.images.find((i) => i.key === intro.im
 <style>
   .intro__enlaces { display: flex; flex-wrap: wrap; gap: 0.8rem 1.6rem; margin-top: 1.4rem; }
   .intro__enlaces a { text-decoration: none; }
-  .intro { padding-top: 3rem; padding-bottom: 0.5rem; max-width: calc(760px + 2 * var(--margen)); }
-  .intro h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); margin: 1rem 0 1.1rem; }
-  .intro__texto { font-size: 1.2rem; line-height: 1.55; }
+  .intro { padding-top: 3rem; padding-bottom: 0.5rem; }
+  .intro h1 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); margin: 1rem 0 1.1rem; }
+  .intro__texto { font-size: 1.2rem; line-height: 1.55; max-width: 44rem; }
   /* Cabecera con foto (Docencia): texto y foto lado a lado, con pie que explica la imagen */
   .intro--con-foto {
     max-width: calc(var(--ancho) + 2 * var(--margen));
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     gap: 3rem;
-    align-items: center;
+    align-items: start;
   }
+  .intro--con-foto .intro__bloque { padding-top: 0.5rem; }
   .intro__foto { margin: 0; }
   .intro__foto img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
   .intro__foto figcaption { font-size: 0.85rem; line-height: 1.45; color: var(--gris); margin-top: 0.6rem; }
-  .intro__foto figcaption a { display: inline-block; margin-left: 0.3rem; font-size: 0.62rem; text-decoration: none; }
+  .intro__foto figcaption a { display: inline-block; margin-left: 0.3rem; font-size: 0.7rem; text-decoration: none; }
   @media (max-width: 759px) {
     .intro--con-foto { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
   }
@@ -91,7 +92,7 @@ const foto = intro?.imagen ? imagenesBanco.images.find((i) => i.key === intro.im
   }
   .archivo__cabecera a { text-decoration: none; }
   .archivo__cabecera a:hover { color: var(--rojo-texto); }
-  .archivo__titulo { font-size: clamp(2rem, 4vw, 2.6rem); }
+  .archivo__titulo { font-size: clamp(2.2rem, 4.5vw, 3.2rem); }
   .archivo__titulo--pequeno { font-size: 1.6rem; }
 
   @media (max-width: 999px) {

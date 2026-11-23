@@ -1,5 +1,5 @@
 {
- "nota": "Banco de imágenes del Ateneu d’Economia (30). Fotos: se muestran en gris (filter grayscale + contraste). color=true: carteles y obras, se muestran tal cual (las de vanguardia ya vienen con el color adaptado a la paleta). Registro completo con licencias: diseno/imagenes.md. Asignación automática: la imagen elegida a mano manda; si no, se toma del grupo de la categoría con (id del artículo mod n). La cuña roja no se asigna sola: solo a mano. Reparto (02-11-2026): las obras constructivistas, en todas las secciones; la educación obrera y popular, solo en didáctica y propuestas de aula; las fotos industriales, en economía política, cuaderno sindical, opinión y coyuntura; las de aula, en propuestas de aula; la tradición teórica (Vigotski), en didáctica. «recorte» (píxeles de cada borde) quita el marco del negativo escaneado; width y height son ya las medidas recortadas. Reparto revisado (prueba 23-11-2026): fuera del reparto automático los carteles de propaganda y las obras de vanguardia, salvo «Sobre dos cuadrados» (cuento infantil) en didáctica y aula; siguen en el banco para uso a mano.",
+ "nota": "Banco de imágenes del Ateneu d’Economia (33). Fotos: se muestran en gris (filter grayscale + contraste). color=true: carteles y obras, se muestran tal cual (las de vanguardia ya vienen con el color adaptado a la paleta). Registro completo con licencias: diseno/imagenes.md. Asignación automática: la imagen elegida a mano manda; si no, se toma del grupo de la categoría con (id del artículo mod n). La cuña roja no se asigna sola: solo a mano. Reparto (02-11-2026): las obras constructivistas, en todas las secciones; la educación obrera y popular, solo en didáctica y propuestas de aula; las fotos industriales, en economía política, cuaderno sindical, opinión y coyuntura; las de aula, en propuestas de aula; la tradición teórica (Vigotski), en didáctica. «recorte» (píxeles de cada borde) quita el marco del negativo escaneado; width y height son ya las medidas recortadas. Reparto revisado (prueba 23-11-2026): fuera del reparto automático los carteles de propaganda y las obras de vanguardia, salvo «Sobre dos cuadrados» (cuento infantil) en didáctica y aula; siguen en el banco para uso a mano. Reparto revisado (prueba 23-11-2026, 2): en didáctica y aula entran las tres fotos de la serie del racionamiento (1943) y salen Misiones Pedagógicas, Highlander, «Sobre dos cuadrados» y la clase de ciencias sociales; siguen en el banco para uso a mano.",
  "images": [
   {
    "key": "trabajo",
@@ -498,6 +498,51 @@
    "height": 731,
    "color": false,
    "group": "tradicion-teorica"
+  },
+  {
+   "key": "racionamiento",
+   "file": "aula-racionamiento-mesa-1943.jpg",
+   "label": "Clase sobre el racionamiento (1943)",
+   "alt": {
+    "es": "Estudiantes de secundaria examinan productos y carteles de precios en una clase sobre el racionamiento, en una escuela de Washington, en 1943.",
+    "ca": "Estudiants de secundària examinen productes i cartells de preus en una classe sobre el racionament, en una escola de Washington, el 1943."
+   },
+   "credit": "Office of War Information · Library of Congress",
+   "source": "https://www.loc.gov/pictures/resource/fsa.8b05891/",
+   "width": 954,
+   "height": 732,
+   "color": false,
+   "group": "aula"
+  },
+  {
+   "key": "seminario",
+   "file": "aula-racionamiento-seminario-1943.jpg",
+   "label": "Seminario sobre la cartilla (1943)",
+   "alt": {
+    "es": "Una alumna explica un cartel sobre la cartilla de racionamiento a sus compañeras, sentadas alrededor de una mesa, en una escuela de Washington, en 1943.",
+    "ca": "Una alumna explica un cartell sobre la cartilla de racionament a les seues companyes, assegudes al voltant d’una taula, en una escola de Washington, el 1943."
+   },
+   "credit": "Office of War Information · Library of Congress",
+   "source": "https://www.loc.gov/pictures/resource/fsa.8b05897/",
+   "width": 950,
+   "height": 728,
+   "color": false,
+   "group": "aula"
+  },
+  {
+   "key": "tienda",
+   "file": "aula-tienda-escolar-1943.jpg",
+   "label": "Tienda en el aula (1943)",
+   "alt": {
+    "es": "Alumnos atienden una tienda montada en el aula, con una lista de precios en dinero y en puntos de racionamiento, en una escuela de Washington, en 1943.",
+    "ca": "Alumnes atenen una botiga muntada a l’aula, amb una llista de preus en diners i en punts de racionament, en una escola de Washington, el 1943."
+   },
+   "credit": "Office of War Information · Library of Congress",
+   "source": "https://www.loc.gov/pictures/resource/fsa.8b05892/",
+   "width": 770,
+   "height": 720,
+   "color": false,
+   "group": "aula"
   }
  ],
  "pools": {
@@ -524,28 +569,26 @@
    "salida"
   ],
   "didactica": [
-   "sociales",
+   "racionamiento",
+   "seminario",
+   "tienda",
    "pensar",
    "preguntas",
    "pizarra",
    "escuela",
    "taller",
-   "misiones",
-   "highlander",
    "vigotski",
-   "pensamiento",
-   "dos-cuadrados"
+   "pensamiento"
   ],
   "aula": [
+   "racionamiento",
+   "seminario",
+   "tienda",
    "pizarra",
    "preguntas",
    "pensar",
-   "sociales",
    "taller",
-   "escuela",
-   "misiones",
-   "highlander",
-   "dos-cuadrados"
+   "escuela"
   ],
   "sindical": [
    "salida",

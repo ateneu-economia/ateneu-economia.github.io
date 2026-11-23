@@ -8,7 +8,7 @@ import { t, ruta, copiasDe, type Lang } from "../lib/sitio";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const foto = imagenes.images.find((i) => i.key === "pizarra")!;
+const foto = imagenes.images.find((i) => i.key === "racionamiento")!;
 const T = {
   es: { rotulo: "Didáctica de la economía", l1: "Aprender economía", l2: "haciendo economía", b1: "Entra en la investigación", b2: "Propuestas de aula" },
   ca: { rotulo: "Didàctica de l’economia", l1: "Aprendre economia", l2: "fent economia", b1: "Entra a la recerca", b2: "Propostes d’aula" },
@@ -19,11 +19,11 @@ const T = {
   <div class="envoltorio hero__in">
     <div>
       <p class="rotulo rotulo--rojo">{MARCA} · {T.rotulo}</p>
-      <h1 id="hero-titulo"><span>{T.l1}</span><span class="hero__fent">{T.l2}</span></h1>
+      <h1 id="hero-titulo"><span>{T.l1}</span><span>{T.l2}</span></h1>
       <p class="hero__entrada">{t("portadillaTexto", lang)}</p>
       <p class="hero__acciones">
-        <a class="hero__boton hero__boton--lleno" href={ruta("didactica", lang)}>{T.b1}</a>
-        <a class="hero__boton" href={ruta("aula", lang)}>{T.b2}</a>
+        <a class="boton" href={ruta("didactica", lang)}>{T.b1}</a>
+        <a class="boton boton--contorno" href={ruta("aula", lang)}>{T.b2}</a>
       </p>
       <p class="hero__firma rotulo"><a href={ruta("sobreMi", lang)}>{t("unProyectoDe", lang)} {AUTOR}</a></p>
     </div>
@@ -45,18 +45,8 @@ const T = {
   .hero__in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
   h1 { font-size: clamp(2.9rem, 5.35vw, 4.6rem); line-height: 0.94; text-transform: uppercase; letter-spacing: -0.012em; margin: 1.1rem 0 1.6rem; }
   h1 span { display: block; }
-  .hero__fent { width: fit-content; padding-bottom: 0.16em; background: linear-gradient(var(--rojo), var(--rojo)) left bottom / 100% 0.12em no-repeat; }
   .hero__entrada { font-size: clamp(1.15rem, 1.6vw, 1.3rem); line-height: 1.55; max-width: 33rem; }
   .hero__acciones { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.9rem; }
-  .hero__boton {
-    font: 600 1rem var(--f-interfaz); text-decoration: none;
-    padding: 0.8rem 1.25rem; min-height: 3rem; box-sizing: border-box;
-    display: inline-flex; align-items: center;
-    border: 2px solid var(--grafito); border-radius: 3px; color: var(--grafito);
-  }
-  .hero__boton:hover { background: var(--manila); }
-  .hero__boton--lleno { background: var(--grafito); color: var(--blanco); }
-  .hero__boton--lleno:hover { background: var(--rojo-texto); border-color: var(--rojo-texto); color: var(--blanco); }
   .hero__firma { margin-top: 2rem; display: flex; align-items: center; gap: 0.75rem; }
   .hero__firma::before { content: ""; width: 2.25rem; height: 2px; background: var(--grafito); }
   .hero__firma a { text-decoration: none; border-bottom: 1px solid var(--gris); }
@@ -67,12 +57,13 @@ const T = {
   .casa__base { height: 14px; background: var(--rojo); margin-top: 11px; }
   .casa__pie {
     display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: space-between;
-    margin-top: 0.7rem; font: 500 0.75rem/1.5 var(--f-rotulo); color: var(--gris);
+    margin-top: 0.7rem; font: 400 0.85rem/1.45 var(--f-lectura); color: var(--gris);
   }
-  .casa__pie a { color: var(--gris); text-decoration: none; font-size: 0.66rem; }
+  .casa__pie a { color: var(--gris); text-decoration: none; font-size: 0.7rem; }
   .casa__pie a:hover { color: var(--rojo-texto); }
   @media (max-width: 820px) {
     .hero__in { grid-template-columns: minmax(0, 1fr); }
-    .casa { order: -1; }
+    .casa__foto { aspect-ratio: 4 / 3; }
+    .casa__pie span { display: none; }
   }
 </style>

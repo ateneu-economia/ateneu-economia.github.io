@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   for (const lang of ["es", "ca"] as Lang[]) {
     salidas.push({
       params: { archivo: `${lang}-portada.jpg` },
-      props: { rotulo: MARCA, titulo: t("subtitulo", lang), img: imagenes.images.find((i) => i.key === "sociales")! },
+      props: { rotulo: t("didactica", lang), titulo: t("subtitulo", lang), img: imagenes.images.find((i) => i.key === "racionamiento")! },
     });
     for (const a of await articulosDe(lang)) {
       salidas.push({

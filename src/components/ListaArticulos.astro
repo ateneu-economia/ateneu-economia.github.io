@@ -1,6 +1,6 @@
 ---
-// Lista de artículos: punto rojo, fecha, título en serif y extracto en gris.
-// Con «imagenes», cada fila lleva su foto (se usa en Opinión).
+// Lista de artículos: categoría y fecha en una línea, título en Archivo Narrow y extracto en gris.
+// Con «imagenes», cada fila lleva su foto sobre papel (Didáctica, Aula).
 import {
   t, rutaArticulo, fecha, fechaISO, nombreCategoria, imagenDe, copiasDe, type Articulo, type Lang,
 } from "../lib/sitio";
@@ -25,20 +25,18 @@ const Titulo = `h${nivel}`;
       const img = imagenes ? imagenDe(a) : undefined;
       return (
         <li class="fila">
-          <p class="fila__lado">
-            <span class="fila__punto" aria-hidden="true"></span>
-            {categoria && <span class="rotulo rotulo--rojo">{nombreCategoria(a.data.category, lang)}</span>}
-            <time class="rotulo rotulo--gris" datetime={fechaISO(a.data.date)}>{fecha(a.data.date, lang)}</time>
-          </p>
           <div class="fila__texto">
+            <p class="fila__meta rotulo">
+              {categoria && <span class="rotulo--rojo">{nombreCategoria(a.data.category, lang)}</span>}
+              <time class="rotulo--gris" datetime={fechaISO(a.data.date)}>{fecha(a.data.date, lang)}</time>
+            </p>
             <Titulo class="fila__titulo"><a href={rutaArticulo(a)}>{a.data.title}</a></Titulo>
             {a.data.excerpt && <p class="fila__extracto">{a.data.excerpt}</p>}
           </div>
           {img && (
-            <img
-              class="fila__foto"
-              {...copiasDe(img)} sizes="(max-width: 759px) 100vw, 150px" alt="" width={img.width} height={img.height} loading="lazy" decoding="async"
-            />
+            <div class="foto-papel fila__foto">
+              <img {...copiasDe(img)} sizes="(max-width: 759px) 100vw, 200px" alt="" width={img.width} height={img.height} loading="lazy" decoding="async" />
+            </div>
           )}
         </li>
       );
@@ -50,35 +48,29 @@ const Titulo = `h${nivel}`;
   .lista { list-style: none; margin: 0; padding: 0; }
   .fila {
     display: grid;
-    grid-template-columns: 210px minmax(0, 1fr);
-    gap: 0.6rem 0;
-    padding: 1.4rem 0 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 1.4rem 0 1.5rem;
     border-bottom: 1px solid var(--filete);
   }
-  .lista--imagenes .fila { grid-template-columns: 210px minmax(0, 1fr) 150px; column-gap: 1.5rem; }
-  .fila__lado { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; padding-top: 0.2rem; }
-  .fila__punto { width: 8px; height: 8px; background: var(--rojo); margin-bottom: 0.3rem; }
-  .fila__lado time { padding-left: 24px; margin-top: -0.9rem; }
-  .fila__lado .rotulo--rojo { padding-left: 24px; margin-top: -0.9rem; }
-  .fila__lado .rotulo--rojo + time { margin-top: 0; }
+  .lista--imagenes .fila { grid-template-columns: minmax(0, 1fr) 200px; }
+  .fila__meta { display: flex; flex-wrap: wrap; gap: 0.2rem 0.55rem; white-space: nowrap; }
+  .fila__meta span + time::before { content: "·"; margin-right: 0.55rem; color: var(--gris); }
   .fila__titulo {
-    font: 400 1.4rem/1.3 var(--f-lectura);
-    letter-spacing: 0;
-    text-transform: none;
-    margin: 0.9rem 0 0.9rem;
+    font: 700 1.45rem/1.15 var(--f-titulo);
+    letter-spacing: -0.005em;
+    margin: 0.65rem 0 0.6rem;
   }
   .fila__titulo a { text-decoration: none; }
   .fila__titulo a:hover { color: var(--rojo-texto); }
-  .fila__extracto { color: var(--gris); font-size: 0.9rem; line-height: 1.6; }
-  .fila__foto { width: 150px; height: auto; aspect-ratio: 16 / 10; object-fit: cover; align-self: start; margin-top: 0.9rem; }
+  .fila__extracto { color: var(--gris); font-size: 0.95rem; line-height: 1.6; max-width: 44rem; }
+  .fila__foto { align-self: start; aspect-ratio: 4 / 3; }
+  .fila__foto img { width: 100%; height: 100%; object-fit: cover; }
   .vacio { color: var(--gris); font-size: 1.15rem; margin: 1rem 0 1.5rem; }
 
   @media (max-width: 759px) {
-    .fila, .lista--imagenes .fila { grid-template-columns: minmax(0, 1fr); padding: 1.4rem 0; }
-    .fila__lado { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; }
-    .fila__lado time, .fila__lado .rotulo--rojo { padding-left: 0; margin-top: 0; }
-    .fila__punto { margin: 0; }
-    .fila__titulo { margin: 0.2rem 0 0.6rem; font-size: 1.3rem; }
-    .fila__foto { grid-row: 1; width: 100%; margin: 0 0 0.4rem; }
+    .lista--imagenes .fila { grid-template-columns: minmax(0, 1fr); gap: 0.9rem; }
+    .fila__titulo { font-size: 1.35rem; }
+    .fila__foto { grid-row: 1; aspect-ratio: 16 / 9; }
   }
 </style>

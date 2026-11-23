@@ -72,7 +72,7 @@ const nombreArea = { investigacion: t("investigacion", lang), docencia: t("docen
                 <span>{r.data.license}</span>
                 {r.data.source && <a href={r.data.source}>{t("fuente", lang)}</a>}
               </p>
-              <a class="boton rotulo" href={r.data.file} download>{t("descargar", lang)}</a>
+              <a class="boton" href={r.data.file} download>{t("descargar", lang)}</a>
             </li>
           ))}
         </ul>
@@ -115,7 +115,7 @@ const nombreArea = { investigacion: t("investigacion", lang), docencia: t("docen
     padding: 0 var(--margen);
   }
   .intro { padding-top: 1.9rem; padding-bottom: 1.6rem; border-bottom: 1px solid var(--grafito); }
-  .intro h1 { font-size: clamp(2.1rem, 4vw, 2.6rem); margin: 1.1rem 0; }
+  .intro h1 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); margin: 1.1rem 0; }
   .intro__texto { font-size: 1.2rem; line-height: 1.6; max-width: 46rem; }
   .biblioteca { padding-top: 1.6rem; padding-bottom: 3rem; }
   .vacio { color: var(--gris); font-size: 1.15rem; }

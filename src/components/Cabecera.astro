@@ -266,7 +266,7 @@ const hrefCa = lang === "ca" ? aqui : otraLengua;
     position: absolute;
     left: 0; top: 100%;
     min-width: 15rem;
-    background: #1F2224;          /* desplegable grafito, como en la 4.0 */
+    background: var(--banda);          /* desplegable en tinta oscura */
     color: #FFFFFF;
     padding: 0.4rem 0;
     display: none;
@@ -353,31 +353,36 @@ const hrefCa = lang === "ca" ? aqui : otraLengua;
   }
   .buscador__ir:hover { background: var(--rojo); color: #FFFFFF; }
 
-  /* Móvil: logo arriba, debajo menú + idiomas, y el buscador */
+  /* Móvil: una sola fila (logo, tema, lupa y menú); los idiomas, dentro del menú desplegado */
   @media (max-width: 999px) {
     .cabecera__fila {
       display: grid;
-      grid-template-columns: auto 1fr auto auto;
+      grid-template-columns: minmax(0, 1fr) auto auto auto;
       grid-template-areas:
-        "logo logo logo logo"
-        "ham tem idi bus"
-        "menu menu menu menu";
-      row-gap: 0.6rem;
-      padding-top: 0.9rem;
-      padding-bottom: 1rem;
+        "logo tem bus ham"
+        "menu menu menu menu"
+        "idi idi idi idi";
+      column-gap: 0.15rem;
+      row-gap: 0;
+      min-height: 60px;
+      padding-top: 0.55rem;
+      padding-bottom: 0.55rem;
     }
-    .cabecera__logo { grid-area: logo; margin: 0 auto; }
-    .cabecera__logo img { width: 160px; }
+    .cabecera__logo { grid-area: logo; margin: 0; }
+    .marca { gap: 0.5rem; }
+    .marca__icona { width: 26px; height: 26px; }
+    .marca__nombre { font-size: 1.25rem; white-space: nowrap; }
     .cabecera__hamburguesa {
       grid-area: ham;
       display: grid; place-items: center;
       width: 44px; height: 44px;
-      margin-left: -10px;
+      margin-right: -10px;
       background: none; border: 0; color: var(--grafito); cursor: pointer;
     }
-    .idiomas { grid-area: idi; }
-    .tema { grid-area: tem; justify-self: end; margin: 0 0.4rem 0 0; }
-    .buscador { grid-area: bus; margin-right: -8px; }
+    .idiomas { grid-area: idi; display: none; padding: 0.9rem 0 0.4rem; }
+    .cabecera--abierta .idiomas { display: flex; }
+    .tema { grid-area: tem; justify-self: end; margin: 0; width: 40px; height: 40px; }
+    .buscador { grid-area: bus; margin: 0; }
     .buscador input { font-size: 1rem; }
     .buscador__ir { width: 43px; height: 43px; }
     :global(.js) .buscador__campo { left: var(--margen); right: var(--margen); width: auto; top: calc(100% + 2px); }

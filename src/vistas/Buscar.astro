@@ -19,7 +19,7 @@ const textos = {
     <form class="buscar__form" role="search" action={ruta("buscar", lang)} method="get">
       <label class="solo-lectores" for="q-pagina">{t("buscar", lang)}</label>
       <input id="q-pagina" type="search" name="q" />
-      <button class="boton rotulo" type="submit">{t("buscar", lang)}</button>
+      <button class="boton" type="submit">{t("buscar", lang)}</button>
     </form>
     <p class="rotulo rotulo--gris buscar__estado" aria-live="polite" data-estado></p>
     <ul class="buscar__resultados" data-resultados></ul>

@@ -7,7 +7,7 @@ interface Props {
   imagenes?: Imagen[]; // imágenes que aparecen en la página, para sus créditos
 }
 const { lang, imagenes = [] } = Astro.props;
-const creditos = [...new Map(imagenes.map((i) => [i.key, i])).values()];
+const creditos = [...new Map(imagenes.map((i) => [i.credit, i])).values()]; // un crédito por autor
 ---
 
 <footer class="pie">
@@ -38,17 +38,17 @@ const creditos = [...new Map(imagenes.map((i) => [i.key, i])).values()];
 
 <style>
   .pie {
-    background: var(--manila);
-    border-top: 1px solid var(--manila-2);
+    background: var(--papel);
+    border-top: 2px solid var(--grafito);
     color: var(--grafito);
-    padding: 1.5rem 0 2rem;
+    padding: 2.25rem 0 2rem;
   }
   .pie__logo { text-decoration: none; }
-  .pie__nombre { display: inline-flex; align-items: center; gap: 0.7rem; font-family: var(--f-titulo); font-weight: 700; text-transform: uppercase; font-size: 2rem; line-height: 1; color: var(--grafito); }
-  .pie__icona { width: 46px; height: 46px; }
+  .pie__nombre { display: inline-flex; align-items: center; gap: 0.7rem; font-family: var(--f-titulo); font-weight: 700; text-transform: uppercase; font-size: 1.4rem; line-height: 1; color: var(--grafito); }
+  .pie__icona { width: 32px; height: 32px; }
   .pie__lema { color: var(--gris); margin: 1rem 0 1.4rem; }
   .pie__enlaces {
-    list-style: none; margin: 0; padding: 0;
+    list-style: none; margin: 0; padding: 1.2rem 0 0; border-top: 1px solid var(--filete);
     display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem;
   }
   .pie a { text-decoration: none; }

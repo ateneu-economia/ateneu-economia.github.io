@@ -1,8 +1,9 @@
 ---
-// Barra lateral de la portada: Quién escribe, Por temas, Seguir las novedades y Agenda.
+// Barra lateral de las listas: Quién escribe, Por temas, Seguir las novedades y Agenda.
+// Las etiquetas viven solo en cada artículo y en su página de etiqueta, no aquí.
 // La Agenda solo aparece si hay eventos futuros (de momento no hay ninguno).
 import {
-  t, ruta, rutaCategoria, rutaEtiqueta, nombreCategoria, recuentos, etiquetasDe, eventosFuturos, fecha, fechaISO,
+  t, ruta, rutaCategoria, nombreCategoria, recuentos, eventosFuturos, fecha, fechaISO,
   type Articulo, type Lang,
 } from "../lib/sitio";
 
@@ -16,7 +17,8 @@ const temas = [
   { cat: "didactica", n: n.didactica, hija: false },
   { cat: "aula", n: n.aula, hija: false },
 ] as const;
-const etiquetas = etiquetasDe(articulos);
+// Los recuentos solo se muestran cuando ya hay bastantes artículos (con pocos, parecen vacío).
+const verRecuentos = articulos.length >= 8;
 const eventos = await eventosFuturos(lang);
 ---
 
@@ -35,22 +37,17 @@ const eventos = await eventosFuturos(lang);
           <a class="rotulo" href={rutaCategoria(x.cat, lang)}>
             {x.hija && <span aria-hidden="true" class="temas__flecha">↳</span>}
             <span>{nombreCategoria(x.cat, lang)}</span>
-            <span class="temas__n">{x.n}</span>
+            {verRecuentos && <span class="temas__n">{x.n}</span>}
           </a>
         </li>
       ))}
     </ul>
-    {etiquetas.length > 0 && (
-      <p class="etiquetas">
-        {etiquetas.map((e) => <a href={rutaEtiqueta(e, lang)}>#{e}</a>)}
-      </p>
-    )}
   </section>}
 
   <section class="caja">
     <h2 class="caja__titulo">{t("seguirNovedades", lang)}</h2>
     <p class="caja__texto">{t("rssTexto", lang)}</p>
-    <a class="boton rotulo caja__boton" href={ruta("rss", lang)}>
+    <a class="boton boton--contorno caja__boton" href={ruta("rss", lang)}>
       <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="3" cy="13" r="2" fill="currentColor" /><path d="M1.5 7.5a7 7 0 0 1 7 7M1.5 2.5a12 12 0 0 1 12 12" fill="none" stroke="currentColor" stroke-width="2" /></svg>
       {t("rssBoton", lang)}
     </a>
@@ -81,9 +78,9 @@ const eventos = await eventosFuturos(lang);
   }
   .caja__titulo { font-size: 1.2rem; margin-bottom: 0.9rem; }
   .caja__texto { font-size: 0.86rem; line-height: 1.6; }
-  .caja__enlace { display: inline-block; margin-top: 0.8rem; text-decoration: none; font-size: 0.68rem; }
+  .caja__enlace { display: inline-block; margin-top: 0.8rem; text-decoration: none; }
   .caja__enlace:hover { color: var(--rojo-texto); }
-  .caja__boton { display: inline-flex; align-items: center; gap: 0.55rem; margin-top: 1.1rem; font-size: 0.68rem; }
+  .caja__boton { display: inline-flex; align-items: center; gap: 0.55rem; margin-top: 1.1rem; }
 
   .temas { list-style: none; margin: 0; padding: 0; }
   .temas li { border-bottom: 1px solid var(--filete); }
@@ -101,7 +98,4 @@ const eventos = await eventosFuturos(lang);
   .agenda li { display: grid; gap: 0.2rem; }
   .agenda a { text-decoration-color: var(--rojo); }
   .agenda__lugar { color: var(--gris); font-size: 0.82rem; }
-  .etiquetas { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .etiquetas a { font: 400 0.7rem var(--f-rotulo); letter-spacing: 0.04em; text-decoration: none; color: var(--gris); }
-  .etiquetas a:hover { color: var(--rojo-texto); }
 </style>

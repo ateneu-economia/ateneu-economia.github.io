@@ -42,9 +42,9 @@ export async function getStaticPaths() {
     const hayMateriales = archivosRecursos && (await getCollection("recursos", (r) => (!r.data.lang || r.data.lang === lang) && r.data.area !== "investigacion")).length > 0;
     const enlace = (cat: string, clave: ClaveRuta, texto: string) => (MOSTRAR_SECCIONES_VACIAS || de(cat).length ? [{ texto, href: ruta(clave, lang) }] : []);
     fija("docencia", {
-      vista: "lista", titulo: t("docencia", lang), articulos: de("didactica", "aula"), imagenes: true,
+      vista: "lista", titulo: t("enClase", lang), articulos: de("didactica", "aula"), imagenes: true,
       intro: {
-        rotulo: t("enElAula", lang), titulo: t("docencia", lang), texto: t("docenciaTexto", lang), lista: t("articulos", lang), imagen: "preguntas",
+        rotulo: t("docencia", lang), titulo: t("enClase", lang), texto: t("docenciaTexto", lang), lista: t("articulos", lang), imagen: "seminario",
         enlaces: [
           ...enlace("didactica", "didactica", t("didactica", lang)), ...enlace("aula", "aula", t("propuestasAula", lang)),
           ...(MOSTRAR_SECCIONES_VACIAS || hayMateriales ? [{ texto: t("materiales", lang), href: ruta("materiales", lang) }] : []),
